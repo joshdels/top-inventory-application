@@ -18,10 +18,13 @@ async function getSongGenre() {
   return rows;
 }
 
-async function postFilterGenre(input) {
+async function postSongsbyGenre(genres) {
   const { rows } = await pool.query(
-    "SELECT * FROM songs WHERE  genre LIKE $1",
-    [`%${input}%`],
+    `
+    SELECT * FROM songs
+    WHERE genre = ANY($1)
+    `,
+    [Array.isArray(genres) ? genres : [genres]],
   );
 
   return rows;
@@ -36,4 +39,5 @@ module.exports = {
   getSearchSongname,
   getSongGenre,
   postDeleteAllSongs,
+  postSongsbyGenre,
 };

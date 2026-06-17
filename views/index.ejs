@@ -17,17 +17,42 @@
 
     <!-- to finish pag uwi -->
     <form action="/filter" method="POST">
-      <select name="" id=""></select>
-      <button type="submit"></button>
+
+        <% if (genres && genres.length) { %>
+         <% genres.map((genre) => { %>
+
+          <label>
+
+            <input
+              type="checkbox"
+              name="genres"
+              value="<%= genre.genre %>"
+
+              <% if (
+                selectedGenres &&
+                selectedGenres.includes(genre.genre)
+              ) { %>
+
+                checked
+
+              <% } %>
+            >
+
+            <%= genre.genre %>
+
+          </label>
+
+         <% }) %>
+       <% }%>
+   
+
+      <button type="submit">filter</button>
     </form>
 
 
-    <% if (genres && genres.length) %>
-      <% genres.map((genre) => { %>
-        <p> <%= genre.genre %> </p>
-      <% }) %>
 
-      </label>
+
+  
 
     <% if (songs && songs.length) { %>
         <% songs.forEach((song) => { %>

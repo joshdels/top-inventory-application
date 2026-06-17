@@ -3,6 +3,7 @@ const {
   songsListGet,
   songsListFilterGet,
   songsDeleteAllPost,
+  songsListGenreFilterPost,
 } = require("../controllers/songsControllers");
 
 const songsRouter = Router();
@@ -10,9 +11,6 @@ const songsRouter = Router();
 songsRouter.get("/", songsListGet);
 songsRouter.get("/search", songsListFilterGet);
 songsRouter.get("/delete", songsDeleteAllPost);
-// songsRouter.get("/new");
-// songsRouter.post("/new");
-// songsRouter.get("/update");
-// songsRouter.post("/update");
+songsRouter.post("/filter", songsListGenreFilterPost);
 
 module.exports = songsRouter;
