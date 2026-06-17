@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Songs</title>
+  </head>
+  <body>
+
+    <%- include('navigation') %> 
+
+    <form action="/search" method="GET">
+      <label for="">Search name</label>
+      <input type="text" name="input">
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- to finish pag uwi -->
+    <form action="/filter" method="POST">
+      <select name="" id=""></select>
+      <button type="submit"></button>
+    </form>
+
+
+    <% if (genres && genres.length) %>
+      <% genres.map((genre) => { %>
+        <p> <%= genre.genre %> </p>
+      <% }) %>
+
+      </label>
+
+    <% if (songs && songs.length) { %>
+        <% songs.forEach((song) => { %>
+
+          <div class="card">
+            <h1><%= song.name %></h1>
+          </div>
+
+        <% }) %>
+
+    <% } else { %>
+      <p>No songs found</p>
+    <% } %>
+
+
+  </body>
+</html>
