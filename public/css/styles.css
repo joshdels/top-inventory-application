@@ -90,3 +90,8 @@ label {
 input {
   width: 300px;
 }
+
+img {
+  height: 400px;
+  width: auto;
+}
