@@ -39,12 +39,13 @@ node --watch app.js
 
 ## ENDPOINTS
 
-| HTTP Request | Endpoint | Description |
-| GET | "/" | returns all genre in the index page |
-| GET | "/songs/:genre" | returns all the songs categorise by genre |
-| GET | "/add-song/:genre" | gives a form to be field |
-| POST | "/add-song/:genre" | add a new song |
-| POST | "/delete-all" | delete all the songs in the database |
-| GET | "/edit-song/:id/:genre" | retrieve the data of the song to be prepared to be edited |
-| POST | "/edit-song/:id/:genre" | edit the song by id and its refered genre |
-| POST | "/delete-song/:id/:genre" | delete the song by id |
+| Method | Endpoint                  | Description                         |
+| ------ | ------------------------- | ----------------------------------- |
+| GET    | `/`                       | Returns all genres on index page    |
+| GET    | `/songs/:genre`           | Returns all songs filtered by genre |
+| GET    | `/add-song/:genre`        | Displays add song form              |
+| POST   | `/add-song/:genre`        | Adds a new song                     |
+| POST   | `/delete-all`             | Deletes all songs in database       |
+| GET    | `/edit-song/:id/:genre`   | Loads song data for editing         |
+| POST   | `/edit-song/:id/:genre`   | Updates song by ID                  |
+| POST   | `/delete-song/:id/:genre` | Deletes song by ID                  |
