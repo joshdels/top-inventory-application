@@ -66,24 +66,47 @@ VALUES
 async function main() {
   console.log("Seeding...");
 
-  const client = new Client({
-    host: process.env.HOST,
-    user: process.env.USER,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: process.env.PORT,
-  });
+  if (process.env.NODE_ENV === "production") {
+    console.log("Producation");
 
-  try {
-    await client.connect();
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
 
-    await client.query(SQL);
+    try {
+      await client.connect();
+      await client.query(SQL);
 
-    console.log("Done");
-  } catch (err) {
-    console.error(err);
-  } finally {
-    await client.end();
+      console.log("Done");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      await client.end();
+    }
+  } else {
+    console.log("Development");
+    const client = new Client({
+      host: process.env.HOST,
+      user: process.env.USER,
+      database: process.env.DATABASE,
+      password: process.env.PASSWORD,
+      port: process.env.PORT,
+    });
+
+    try {
+      await client.connect();
+
+      await client.query(SQL);
+
+      console.log("Done");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      await client.end();
+    }
   }
 }
 
