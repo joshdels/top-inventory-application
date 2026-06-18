@@ -1,16 +1,16 @@
 const { Router } = require("express");
 const {
-  songsListGet,
-  songsListFilterGet,
-  songsDeleteAllPost,
-  songsListGenreFilterPost,
+  songsGenreListGet,
+  songsByGenreGet,
+  songAddPost,
+  songAddGet,
 } = require("../controllers/songsControllers");
 
 const songsRouter = Router();
 
-songsRouter.get("/", songsListGet);
-songsRouter.get("/search", songsListFilterGet);
-songsRouter.get("/delete", songsDeleteAllPost);
-songsRouter.post("/filter", songsListGenreFilterPost);
+songsRouter.get("/", songsGenreListGet);
+songsRouter.get("/songs/:genre", songsByGenreGet);
+songsRouter.get("add-song/:genre", songAddGet);
+// songsRouter.post("add", songAddPost);
 
 module.exports = songsRouter;

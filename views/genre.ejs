@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+ <h1><%= genre %></h1>
+
+  <% if (songs && songs.length) { %>
+      <% songs.forEach((song) => { %>
+
+        <h1><%= song.name %></h1>
+
+      <% }) %>
+
+  <% } else { %>
+    <p>No songs found</p>
+  <% } %>
+
+  <a href="/add">Add new</a>
+
+
+</body>
+</html>

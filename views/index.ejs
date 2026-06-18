@@ -9,63 +9,21 @@
 
     <%- include('navigation') %> 
 
-    <form action="/search" method="GET">
-      <label for="">Search name</label>
-      <input type="text" name="input">
-      <button type="submit">Search</button>
-    </form>
+    <h1>Songs' Genres</h1>
 
-    <!-- to finish pag uwi -->
-    <form action="/filter" method="POST">
+    <% if (genres && genres.length) { %>
+        <% genres.forEach((genre) => { %>
 
-        <% if (genres && genres.length) { %>
-         <% genres.map((genre) => { %>
-
-          <label>
-
-            <input
-              type="checkbox"
-              name="genres"
-              value="<%= genre.genre %>"
-
-              <% if (
-                selectedGenres &&
-                selectedGenres.includes(genre.genre)
-              ) { %>
-
-                checked
-
-              <% } %>
-            >
-
-            <%= genre.genre %>
-
-          </label>
-
-         <% }) %>
-       <% }%>
-   
-
-      <button type="submit">filter</button>
-    </form>
-
-
-
-
-  
-
-    <% if (songs && songs.length) { %>
-        <% songs.forEach((song) => { %>
-
-          <div class="card">
-            <h1><%= song.name %></h1>
-          </div>
+          <a class="card" href="songs/<%= genre.genre %>">
+            <h1><%= genre.genre %></h1>
+          </a>
 
         <% }) %>
 
     <% } else { %>
-      <p>No songs found</p>
+      <p>No genres found</p>
     <% } %>
+
 
 
   </body>
