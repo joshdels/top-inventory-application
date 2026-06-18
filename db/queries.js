@@ -6,7 +6,9 @@ async function getSongGenre() {
 }
 
 async function getSongsByGenre(genre) {
-  const { rows } = await pool.query("SELECT * FROM songs WHERE genre = $1", [genre]);
+  const { rows } = await pool.query("SELECT * FROM songs WHERE genre = $1", [
+    genre,
+  ]);
   return rows;
 }
 
@@ -18,60 +20,57 @@ async function postNewSong(
   genre,
   image_url,
 ) {
-  await pool.query(`
+  await pool.query(
+    `
     INSERT INTO songs (
       name, album, artist, date_release, genre, image_url
     )
     VALUES (
-    '${name}', '${album}', '${artist}', '${date_release}', '${genre}', '${image_url} 
+      $1, $2, $3, $4, $5, $6
     )  
-  `);
-}
-
-
-
-
-
-// reference
-
-
-async function postSongsbyGenre(genres) {
-  const { rows } = await pool.query(
-    `
-    SELECT * FROM songs
-    WHERE genre = ANY($1)
-    `,
-    [Array.isArray(genres) ? genres : [genres]],
+  `,
+    [name, album, artist, date_release, genre, image_url],
   );
-
-  return rows;
-}
-
-async function getSongbyId(id) {
-  const { rows } = await pool.query("SELECT * FROM songs WHERE  id = $1", [id]);
-  return rows;
-}
-
-
-
-async function postDeleteSongById() {
-  await pool.query()
 }
 
 async function postDeleteAllSongs() {
   await pool.query("DELETE FROM songs");
 }
 
+async function postDeleteSongsById(id) {
+  await pool.query("DELETE FROM songs WHERE id = $1", [id]);
+}
 
+async function getSongById(id) {
+  const { rows } = await pool.query("SELECT * FROM songs WHERE id = $1", [id]);
+  return rows[0];
+}
+
+async function postEditSongById(
+  id,
+  name,
+  album,
+  artist,
+  date_release,
+  genre,
+  image_url,
+) {
+  await pool.query(
+    `
+    UPDATE songs 
+    SET name= $2, album= $3, artist= $4, date_release = $5, genre = $6, image_url = $7
+    WHERE id = $1
+    `,
+    [id, name, album, artist, date_release, genre, image_url],
+  );
+}
 
 module.exports = {
   getSongGenre,
   getSongsByGenre,
   postNewSong,
-
-
-
   postDeleteAllSongs,
-  postSongsbyGenre,
-  getSongbyId,
+  postDeleteSongsById,
+  getSongById,
+  postEditSongById,
 };

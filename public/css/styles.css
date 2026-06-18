@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+:root {
+  --primary-color: #fdf6ed;
+  --secondary-color: #dccfc0;
+  --tertiary-color: #a1bc98;
+  --quad-color: #778873;
+}
+
+html,
+body,
+* {
+  padding: 0;
+  margin: 0;
+  color: var(--quad-color);
+  background-color: var(--primary-color);
+  font-family: "Sansation", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: 2rem;
+  color: inherit;
+}
+
+nav {
+  padding: 1rem;
+  background-color: var(--secondary-color);
+}
+
+.navigation-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: var(--secondary-color);
+}
+
+main {
+   padding: 5rem;
+}
+
+.genre-container {
+  display: grid;
+  padding: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 5rem;
+}
+
+.card {
+  padding: 2rem;
+  background-color: var(--secondary-color);
+}
+
+.button-holder {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  background-color: var(--secondary-color);
+}
+
+.buttons {
+  width: 100px;
+  padding: 0.5rem;
+  border: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--secondary-color);
+}
+
+label {
+  width: 100px ;
+  background-color: var(--secondary-color);
+}
+
+input {
+  width: 300px;
+}

@@ -4,24 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  
- <h1><%= genre %></h1>
 
-  <% if (songs && songs.length) { %>
-      <% songs.forEach((song) => { %>
+  <%- include ('navigation') %>
 
-        <h1><%= song.name %></h1>
+  <main>
+    <h1><%= genre %></h1>
 
-      <% }) %>
+      <a href="/">Back to home</a>
 
-  <% } else { %>
-    <p>No songs found</p>
-  <% } %>
+      <% if (songs && songs.length) { %>
+          <% songs.forEach((song) => { %>
 
-  <a href="/add">Add new</a>
+            <div class="card"> 
+              <img src="<%= song.image_url %>"  %> alt="<%= song.name %>">
+              <h1><%= song.name %></h1>
+              <p><%= song.artist %></p>
+              <p><%= song.album %></p>
+              <p><%= song.date_release ? song.date_release.toString().slice(0, 10) : "" %></p>
+              <div class="button-holder">
 
+                <a href="/edit-song/<%= song.id %>/<%= genre %>" class="buttons">edit</a>
+            
+                <form action="/delete-song/<%= song.id %>/<%= genre %>" method="POST">
+                  <button type="submit" class="buttons">delete</button>
+                </form>
+
+              </div>
+            </div>
+
+          <% }) %>
+
+      <% } else { %>
+        <p>No songs found</p>
+      <% } %>
+
+      <a href="/add-song/<%= genre %>">Add new</a>
+
+  </main>
+ 
 
 </body>
 </html>

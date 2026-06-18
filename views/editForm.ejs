@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+
+    <%- include('navigation') %>
+
+    <main>
+      <h1>Edit Song</h1>
+
+      <form action="/edit-song/<%=song.id %>/<%=genre %>" method="POST">
+        <label for=""
+          >name<input type="text" name="name" value="<%= song.name %>"
+        /></label>
+        <label for=""
+          >album<input type="text" name="album" value="<%= song.album %>"
+        /></label>
+        <label for=""
+          >artist<input type="text" name="artist" value="<%= song.artist %>"
+        /></label>
+        <label for=""
+          >date release<input
+            type="date"
+            name="date_release"
+            value="<%= song.date_release.toISOString().split('T')[0] %>"
+        /></label>
+        <label for=""
+          >genre<input type="text" name="genre" value="<%= song.genre %>"
+        /></label>
+        <label for=""
+          >image url<input
+            type="text"
+            name="image_url"
+            value="<%= song.image_url %>"
+        /></label>
+  
+        <button type="submit">submit</button>
+      </form>
+  
+      <a href="/songs/<%=genre %>">back to <%=genre %> page</a>
+    </main>
+  </body>
+</html>

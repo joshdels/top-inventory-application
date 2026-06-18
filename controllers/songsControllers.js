@@ -10,10 +10,7 @@ async function songsGenreListGet(req, res) {
 
 async function songsByGenreGet(req, res) {
   const { genre } = req.params;
-  console.log(genre);
-
   const songs = await db.getSongsByGenre(genre);
-  console.log(songs);
 
   res.render("genre", {
     genre: genre,
@@ -22,30 +19,20 @@ async function songsByGenreGet(req, res) {
 }
 
 async function songAddGet(req, res) {
-  res.render("songForm")
+  const { genre } = req.params;
+
+  res.render("songForm", {
+    genre: genre,
+  });
 }
 
 async function songAddPost(req, res) {
-  const { name, album, artist, date_release, genre, image_url } = req.params;
+  const { name, album, artist, date_release, image_url } = req.body;
+  const { genre } = req.params;
 
   await db.postNewSong(name, album, artist, date_release, genre, image_url);
 
   res.redirect("/");
-}
-
-
-
-// reference and cleaned
-async function songsListFilterGet(req, res) {
-  const { input } = req.query;
-  const filterSongs = await db.getSearchSongname(input);
-  const genres = await db.getSongGenre();
-
-  res.render("index", {
-    songs: filterSongs,
-    genres: genres,
-    selectedGenres: Array.isArray(genres) ? genres : [genres],
-  });
 }
 
 async function songsDeleteAllPost(req, res) {
@@ -53,30 +40,53 @@ async function songsDeleteAllPost(req, res) {
   res.redirect("/");
 }
 
-async function songsEditGet(req, res) {
-  const songs = await db.getAllSongs();
+async function songsDeleteById(req, res) {
+  const { id, genre } = req.params;
 
-  res.render("edit", {
-    songs: songs,
+  await db.postDeleteSongsById(id);
+  res.redirect(`/songs/${genre}`);
+}
+
+async function songsEditByIdGet(req, res) {
+  const { id, genre } = req.params;
+  const song = await db.getSongById(id);
+
+  res.render("editForm", {
+    song: song,
+    genre: genre,
   });
 }
 
-// ID // edit a song maybe?
-async function songEditGet(req, res) {
-  const { id } = req.params;
+async function songsEditByIdPost(req, res) {
+  try {
+    const { id, genre } = req.params;
+    const { name, album, artist, date_release, image_url } =
+      req.body;
 
-  await db.getSongbyId(id);
+    await db.postEditSongById(
+      id,
+      name,
+      album,
+      artist,
+      date_release,
+      genre,
+      image_url,
+    );
 
-  res.render("editSong", {
-    songs: songs,
-  });
+    res.redirect(`/songs/${genre}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Update failed");
+  }
 }
-
-
 
 module.exports = {
   songsGenreListGet,
   songsByGenreGet,
   songAddGet,
   songAddPost,
+  songsDeleteAllPost,
+  songsDeleteById,
+  songsEditByIdGet,
+  songsEditByIdPost,
 };

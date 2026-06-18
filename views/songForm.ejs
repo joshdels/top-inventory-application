@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<h1>Form Song Add</h1>
-<body>
-  <form action="add" method="POST">
-    <button type="submit">add</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+   <%- include('navigation') %>
+
+  <main>
+    <h1>Add new <%= genre %> </h1>
+    <body>
+      <h1>New Song</h1>
+      <form action="/add-song/<%= genre %>" method="POST">
+        <label for="">name<input type="text" name="name" /></label>
+        <label for="">album<input type="text" name="album" /></label>
+        <label for="">artist<input type="text" name="artist" /></label>
+        <label for=""
+          >date release<input type="date" name="date_release"
+        /></label>
+        <label for="">image url<input type="text" name="image_url" /></label>
+
+        <button type="submit">add</button>
+      </form>
+
+      <a href="/">back to home </a>
+    </body>
+  </main>
+
 </html>

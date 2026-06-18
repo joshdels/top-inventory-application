@@ -27,7 +27,7 @@ VALUES
   'The Weeknd',
   '2019-11-29',
   'Synth-pop',
-  'https://example.com/blinding-lights.jpg'
+  'https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/Blinding_Lights_%28Country_Version%29.jpeg/250px-Blinding_Lights_%28Country_Version%29.jpeg'
 ),
 (
   'Flowers',
@@ -35,7 +35,7 @@ VALUES
   'Miley Cyrus',
   '2023-01-12',
   'Pop',
-  'https://example.com/flowers.jpg'
+  'https://m.media-amazon.com/images/M/MV5BYzU3ZTFkZDctYmNlNi00ZjMxLTgwNGItYTI1YjdmOWJiNTQzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'
 ),
 (
   'Espresso',
@@ -43,7 +43,7 @@ VALUES
   'Sabrina Carpenter',
   '2024-04-11',
   'Pop',
-  'https://example.com/espresso.jpg'
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFaIj696Hx3AiLaiwHIrfsRJOgIJMhJVG6IA&s'
 ),
 (
   'Shape of You',
@@ -51,7 +51,7 @@ VALUES
   'Ed Sheeran',
   '2017-01-06',
   'Pop',
-  'https://example.com/shape-of-you.jpg'
+  'https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png'
 ),
 (
   'Bad Guy',
@@ -59,7 +59,7 @@ VALUES
   'Billie Eilish',
   '2019-03-29',
   'Electropop',
-  'https://example.com/bad-guy.jpg'
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjodsW5KE5C0acg3ke1LYpaX5kN7clERS8_w&s'
 );
 `;
 
